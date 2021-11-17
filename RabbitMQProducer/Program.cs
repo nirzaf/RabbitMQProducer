@@ -4,7 +4,7 @@ using RabbitMQ.Client;
 using System.Text;
 using System.Text.Json;
 
-Console.WriteLine("Hello, World!");
+Console.WriteLine("Message Producer Running");
 
 var factory = new ConnectionFactory { Uri= 
     new Uri("amqp://guest:guest@localhost:5672") 
