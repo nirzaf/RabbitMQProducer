@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Faker.Net" Version="1.5.150" />
     <PackageReference Include="RabbitMQ.Client" Version="6.2.2" />
   </ItemGroup>
 

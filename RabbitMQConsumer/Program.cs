@@ -1,19 +1,17 @@
 ﻿using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Text;
-using System.Text.Json;
 
-Console.WriteLine("Hello, World!");
 
 var factory = new ConnectionFactory
 {
     Uri =
-    new Uri("amqp://guest:guest@localhost:15672")
+    new Uri("amqp://guest:guest@localhost:5672")
 };
 
 using var connection = factory.CreateConnection();
 using var channel = connection.CreateModel();
-channel.QueueDeclare("Demo-Queue", true, false, false, null);
+channel.QueueDeclare("Demo-queue", true, false, false, null);
 
 var consumer = new EventingBasicConsumer(channel);
 consumer.Received += (sender, e) => { 
@@ -23,9 +21,5 @@ consumer.Received += (sender, e) => {
 };
 
 
-
-
-//var message = new { name = "Producer", message = "Hello" };
-//var body = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(message));
-
 channel.BasicConsume("Demo-queue", true, consumer);
+Console.ReadLine();
