@@ -4,12 +4,12 @@ using System.Text.Json;
 
 Console.WriteLine("Message Producer Running");
 
-var factory = new ConnectionFactory { Uri= 
+ConnectionFactory factory = new ConnectionFactory { Uri= 
     new Uri("amqp://guest:guest@localhost:5672") 
     };
 
-using var connection = factory.CreateConnection();
-using var channel = connection.CreateModel();
+using IConnection? connection = factory.CreateConnection();
+using IModel? channel = connection.CreateModel();
 channel.QueueDeclare("Demo-queue", true, false, false, null);
 
 

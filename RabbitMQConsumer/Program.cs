@@ -1,25 +1,27 @@
 ﻿using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Text;
+using static System.Console;
 
 
-var factory = new ConnectionFactory
+ConnectionFactory factory = new ConnectionFactory
 {
     Uri =
     new Uri("amqp://guest:guest@localhost:5672")
 };
 
-using var connection = factory.CreateConnection();
-using var channel = connection.CreateModel();
+using IConnection? connection = factory.CreateConnection();
+using IModel? channel = connection.CreateModel();
 channel.QueueDeclare("Demo-queue", true, false, false, null);
 
-var consumer = new EventingBasicConsumer(channel);
+EventingBasicConsumer consumer = new EventingBasicConsumer(channel);
 consumer.Received += (sender, e) => { 
     var body = e.Body.ToArray();
     var message = Encoding.UTF8.GetString(body);
-    Console.WriteLine(message);
+    WriteLine(message);
+    WriteLine(sender);
 };
 
 
 channel.BasicConsume("Demo-queue", true, consumer);
-Console.ReadLine();
+ReadLine();
