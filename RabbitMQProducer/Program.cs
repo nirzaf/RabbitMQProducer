@@ -7,7 +7,7 @@ WriteLine("Message Producer Running");
 
 ConnectionFactory factory = new()
 { 
-    Uri= new Uri("amqp://guest:guest@localhost:15672") 
+    Uri= new Uri("amqp://guest:guest@localhost:5672") 
 };
 
 using IConnection? connection = factory.CreateConnection();
