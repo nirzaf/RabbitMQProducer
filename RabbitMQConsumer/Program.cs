@@ -23,5 +23,5 @@ consumer.Received += (sender, e) => {
 };
 
 
-channel.BasicConsume("Demo-queue", true, consumer);
+channel.BasicConsume("my-rabbit-queue", true, consumer);
 ReadLine();
