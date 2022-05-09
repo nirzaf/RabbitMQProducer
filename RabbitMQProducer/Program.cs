@@ -24,7 +24,7 @@ for(int i=0; i<1000;i++)
     var body = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(message));
     WriteLine(message);
     channel.BasicPublish("", "my-rabbit-queue", null, body);
-    Thread.Sleep(50);
+    //Thread.Sleep(50);
 }
 
 
