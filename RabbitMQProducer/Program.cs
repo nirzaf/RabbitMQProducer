@@ -1,8 +1,9 @@
 ﻿using RabbitMQ.Client;
 using System.Text;
 using System.Text.Json;
+using static System.Console;
 
-Console.WriteLine("Message Producer Running");
+WriteLine("Message Producer Running");
 
 ConnectionFactory factory = new()
 { 
